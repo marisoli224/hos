@@ -1,4 +1,6 @@
 import 'package:chat_c7_str/providers/my_provider.dart';
+import 'package:chat_c7_str/screens/add_room/add_room_screen.dart';
+import 'package:chat_c7_str/screens/chat/chat_screen.dart';
 import 'package:chat_c7_str/screens/create_account/create_account.dart';
 import 'package:chat_c7_str/screens/home/home_screen.dart';
 import 'package:chat_c7_str/screens/login/login_screen.dart';
@@ -25,7 +27,9 @@ class MyApp extends StatelessWidget {
       routes: {
         CreateAccountScreen.routeName: (context) => CreateAccountScreen(),
         LoginScreen.routeName: (context) => LoginScreen(),
-        HomeScreen.routeName: (c) => HomeScreen()
+        HomeScreen.routeName: (c) => HomeScreen(),
+        ChatScreen.routeName: (c) => ChatScreen(),
+        AddRoomScreen.routeName: (c) => AddRoomScreen()
       },
     );
   }
