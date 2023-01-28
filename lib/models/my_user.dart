@@ -3,6 +3,7 @@ class MyUser {
 
   String id;
   String fName;
+
   String lName;
   String userName;
   String email;
