@@ -1,19 +1,24 @@
+
+
+import 'my_appointement.dart';
+
 class MyUser {
   static const String COLLECTION_NAME = "Users";
 
   String id;
   String fName;
-
   String lName;
   String userName;
   String email;
+  List<MyAppointment>?  appointments;
 
   MyUser(
       {required this.id,
       required this.fName,
       required this.lName,
       required this.userName,
-      required this.email});
+      required this.email,
+       this.appointments});
 
   MyUser.fromJson(Map<String, dynamic> json)
       : this(
@@ -22,6 +27,7 @@ class MyUser {
           lName: json['lName'],
           userName: json['userName'],
           email: json['email'],
+          appointments: json ['appointments'],
         );
 
   Map<String, dynamic> toJson() {
@@ -31,6 +37,7 @@ class MyUser {
       "lName": lName,
       "userName": userName,
       "email": email,
+      "appointments" : appointments,
     };
   }
 }

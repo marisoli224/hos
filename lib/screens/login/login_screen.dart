@@ -1,12 +1,14 @@
-import 'package:chat_c7_str/base.dart';
-import 'package:chat_c7_str/models/my_user.dart';
-import 'package:chat_c7_str/providers/my_provider.dart';
-import 'package:chat_c7_str/screens/create_account/create_account.dart';
-import 'package:chat_c7_str/screens/home/home_screen.dart';
-import 'package:chat_c7_str/screens/login/login_navigator.dart';
-import 'package:chat_c7_str/screens/login/login_view_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../base.dart';
+import '../../home_layout.dart';
+import '../../models/my_user.dart';
+import '../../providers/my_provider.dart';
+import '../create_account/create_account.dart';
+import 'login_navigator.dart';
+import 'login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "login";
@@ -142,6 +144,6 @@ class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
   void goToHome(MyUser user) {
     var provider = Provider.of<MyProvider>(context, listen: false);
 
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    Navigator.pushReplacementNamed(context, HomeLayout.routeName);
   }
 }

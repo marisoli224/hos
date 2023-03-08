@@ -1,10 +1,13 @@
-import 'package:chat_c7_str/base.dart';
-import 'package:chat_c7_str/database_utils/database_utils.dart';
-import 'package:chat_c7_str/models/my_user.dart';
-import 'package:chat_c7_str/screens/create_account/connector.dart';
-import 'package:chat_c7_str/shared/components/firebase_errors.dart';
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../base.dart';
+import '../../database_utils/database_utils.dart';
+import '../../models/my_user.dart';
+import '../../shared/components/firebase_errors.dart';
+import 'connector.dart';
 
 class CreateAccountViewModel extends BaseViewModel<CreateAccountNavigator> {
   String message = "";
@@ -23,7 +26,7 @@ class CreateAccountViewModel extends BaseViewModel<CreateAccountNavigator> {
           fName: fName,
           lName: lName,
           userName: userName,
-          email: email);
+          email: email, );
       DataBaseUtils.AddUserToFirestore(myUser).then((value) {
         navigator!.hideDialog();
         navigator!.goToHome(myUser);

@@ -1,11 +1,11 @@
-import 'package:chat_c7_str/base.dart';
-import 'package:chat_c7_str/database_utils/database_utils.dart';
-import 'package:chat_c7_str/models/my_user.dart';
-import 'package:chat_c7_str/screens/login/login_navigator.dart';
-import 'package:chat_c7_str/shared/components/components.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../base.dart';
+import '../../database_utils/database_utils.dart';
+import '../../models/my_user.dart';
 import '../../shared/components/firebase_errors.dart';
+import 'login_navigator.dart';
 
 class LoginViewModel extends BaseViewModel<LoginNavigator> {
   var auth = FirebaseAuth.instance;

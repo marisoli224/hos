@@ -1,8 +1,10 @@
-import 'package:chat_c7_str/models/message.dart';
-import 'package:chat_c7_str/models/my_user.dart';
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/room.dart';
+import '../models/my_appointement.dart';
+import '../models/my_user.dart';
+
 
 class DataBaseUtils {
   static CollectionReference<MyUser> getUsersCollection() {
@@ -15,56 +17,59 @@ class DataBaseUtils {
         );
   }
 
-  static CollectionReference<Message> getMessageCollection(String roomId) {
-    return getRoomsCollection()
-        .doc(roomId)
-        .collection(Message.COLLECTION_NAME)
-        .withConverter<Message>(
-          fromFirestore: (snapshot, options) =>
-              Message.fromJson(snapshot.data()!),
-          toFirestore: (value, options) => value.toJson(),
-        );
-  }
-
-  static Future<void> addMessageToFirestore(Message message) {
-    var docRef = getMessageCollection(message.roomId).doc();
-    message.id = docRef.id;
-    return docRef.set(message);
-  }
-
-  static Stream<QuerySnapshot<Message>> readMessagesFromFirestore(
-      String roomId) {
-    return getMessageCollection(roomId).orderBy("dateTime").snapshots();
-  }
-
-  static CollectionReference<Room> getRoomsCollection() {
-    return FirebaseFirestore.instance
-        .collection(Room.COLLECTION_NAME)
-        .withConverter<Room>(
-          fromFirestore: (snapshot, options) => Room.fromJson(snapshot.data()!),
-          toFirestore: (room, options) => room.toJson(),
-        );
-  }
-
-  static Future<void> AddRoomToFirestore(Room room) {
-    var docRef = getRoomsCollection().doc();
-    room.id = docRef.id;
-    return docRef.set(room);
-  }
-
-  static Future<List<Room>> getRoomsFromFirestore() async {
-    QuerySnapshot<Room> snapRoom = await getRoomsCollection().get();
-    return snapRoom.docs.map((e) => e.data()).toList();
-  }
-
   static Future<void> AddUserToFirestore(MyUser user) {
-    return getUsersCollection().doc(user.id).set(user);
+
+    user.id = getUsersCollection().doc().id;
+    return getUsersCollection().doc().set(user);
+
+
+   // return getUsersCollection().doc(user.id).set(user);
   }
 
   static Future<MyUser?> readUser(String id) async {
-    DocumentSnapshot<MyUser> docSnapShot =
-        await getUsersCollection().doc(id).get();
+    DocumentSnapshot<MyUser> docSnapShot = await getUsersCollection().doc(id).get();
     var myUser = docSnapShot.data();
     return myUser;
   }
+
+
+
+
+
+
+
+
+
+  static CollectionReference<MyAppointment> getAppointmentsCollection(String userId) {
+    return getUsersCollection()
+        .doc(userId)
+        .collection(MyAppointment.COLLECTION_NAME)
+        .withConverter<MyAppointment>(
+      fromFirestore: (snapshot, options) =>
+          MyAppointment.fromJson(snapshot.data()!),
+      toFirestore: (value, options) => value.toJson(),
+    );
+  }
+
+  static Future<void> addAppointmentToFirestore(MyAppointment appointment) {
+    var docRef = getAppointmentsCollection(appointment.userId).doc();
+    appointment.id = docRef.id;
+    return docRef.set(appointment);
+  }
+
+  static Stream<QuerySnapshot<MyAppointment>> getAppointmentsFromFirestore(String userId) {
+    return getAppointmentsCollection(userId).orderBy("date").snapshots();
+  }
+
+  static void editIsDone(MyAppointment appointment) {
+    var appCollection = getAppointmentsCollection(appointment.userId);
+    var appDoc = appCollection.doc(appointment.id);
+    appDoc.update({'isDone': appointment.isDone! ? false : true});
+  }
+
+  static Future<void> deleteAppointment(MyAppointment appointment) {
+    var appItem = getAppointmentsCollection(appointment.userId).doc(appointment.id);
+    return appItem.delete();
+  }
+
 }

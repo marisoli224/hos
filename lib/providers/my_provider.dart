@@ -1,7 +1,9 @@
-import 'package:chat_c7_str/database_utils/database_utils.dart';
-import 'package:chat_c7_str/models/my_user.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../database_utils/database_utils.dart';
+import '../models/my_user.dart';
 
 class MyProvider extends ChangeNotifier {
   MyUser? myUser;
@@ -16,5 +18,6 @@ class MyProvider extends ChangeNotifier {
 
   void initMyUser() async {
     myUser = await DataBaseUtils.readUser(firebaseUser?.uid ?? "");
+    print('********************************************************');
   }
 }
