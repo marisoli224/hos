@@ -78,7 +78,7 @@ class TopDoctors extends StatelessWidget {
           title: Text('Top Doctors'),
           backgroundColor: Colors.grey,
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green[100],
         body: GridView.builder(
           itemCount: doctors.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

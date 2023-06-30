@@ -201,8 +201,7 @@ class _BookingPageState extends State<BookingPage> {
         userId: userId,
         isDone: false);
 
-await
-   DataBaseUtils.addAppointmentToFirestore(appointment).timeout(const Duration(seconds: 1),
+  await DataBaseUtils.addAppointmentToFirestore(appointment).timeout(const Duration(seconds: 1),
         onTimeout: () {
           Navigator.of(context).pushNamed(Appointments.routeName,arguments: doctor).catchError((e) {
             print(e.message);

@@ -1,8 +1,9 @@
 
 import 'package:chat_c7_str/screens/appointement/appointement_screen.dart';
-import 'package:chat_c7_str/screens/chat_screen/Messages.dart';
+
 import 'package:chat_c7_str/screens/login/login_screen.dart';
-import 'package:chat_c7_str/screens/profile_screen/profile.dart';
+import 'package:chat_c7_str/screens/medical_file/medical_file_screen.dart';
+import 'package:chat_c7_str/screens/more/more_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     return  SafeArea(
       top: true,
       child: Scaffold(
-        backgroundColor: Colors.lightBlue[200],
+        backgroundColor: Colors.green[100],
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             centerTitle: true,
@@ -48,7 +49,7 @@ class _HomeLayoutState extends State<HomeLayout> {
             ],
           ),
        bottomNavigationBar: BottomNavigationBar(
-         selectedItemColor: Colors.blue,
+         selectedItemColor: Colors.white,
          unselectedItemColor: Colors.white,
          currentIndex: currentIndex,
          onTap: (index){
@@ -59,10 +60,10 @@ class _HomeLayoutState extends State<HomeLayout> {
          },
          //backgroundColor:Colors.black,
          items: [
-           BottomNavigationBarItem(icon: Icon(Icons.home),label: "home",backgroundColor: Colors.grey),
-           BottomNavigationBarItem(icon: Icon(Icons.calendar_month),label: "Calender",backgroundColor: Colors.grey),
-           BottomNavigationBarItem(icon: Icon(Icons.message),label: "chat",backgroundColor: Colors.grey),
-           BottomNavigationBarItem(icon: Icon(Icons.person),label: "Profile",backgroundColor: Colors.grey),
+           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: Colors.grey),
+           BottomNavigationBarItem(icon: Icon(Icons.calendar_month),label: "Appointments",backgroundColor: Colors.grey),
+           BottomNavigationBarItem(icon: Icon(Icons.folder),label: "Medical File",backgroundColor: Colors.grey),
+           BottomNavigationBarItem(icon: Icon(Icons.more_horiz_rounded),label: "More",backgroundColor: Colors.grey),
          ],
        ),
         body:tabs[currentIndex]
@@ -70,6 +71,6 @@ class _HomeLayoutState extends State<HomeLayout> {
     );
   }
   List<Widget> tabs=[
-    Home(),Appointments(),Messages(),Profile()
+    Home(),Appointments(),MedicalFile(),More()
   ];
 }

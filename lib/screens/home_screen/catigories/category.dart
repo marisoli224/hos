@@ -27,7 +27,7 @@ class Categories extends StatelessWidget {
           title: Text('Categories'),
           backgroundColor: Colors.grey,
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green[100],
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GridView.builder(

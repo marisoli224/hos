@@ -1,4 +1,4 @@
-import 'my_doctor.dart';
+
 
 class MyCategory {
   static const String COLLECTION_NAME = "Category";
